@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html >
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ĞÂÎÅÂÖ²¥</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>æ–°é—»è½®æ’­</title>
 <script src="SlideTrans.js"></script>
 </head>
 <body >
@@ -61,13 +61,13 @@ background-repeat:no-repeat;
 </div>
 <br />
 <div>
-	<input id="idAuto" type="button" value="Í£Ö¹" />
+	<input id="idAuto" type="button" value="åœæ­¢" />
 	<input id="idPre" type="button" value="&lt;&lt" />
 	<input id="idNext" type="button" value="&gt;&gt;" />
 	<select id="idTween">
-		<option value="0">Ä¬ÈÏ»º¶¯</option>
-		<option value="1">·½Ê½1</option>
-		<option value="2">·½Ê½2</option>
+		<option value="0">ç¼“åŠ¨</option>
+		<option value="1">æ–¹å¼1</option>
+		<option value="2">æ–¹å¼2</option>
 	</select>
 </div>
 
@@ -78,7 +78,7 @@ background-color:green;border:10px solid black}
 		margin-left:60px;margin-top:20px; border:10px solid black}
 div.page {width:800px;height:50;margin-left:60px}
 div.page button{float:left}
-.container1 p.title{font-family:»ªÎÄ²ÊÔÆ;font-size:30px;font-weight:bold}
+.container1 p.title{font-family:åæ–‡å½©äº‘;font-size:30px;font-weight:bold}
 .judge img{float:left;margin:30px;width:100px;height:80px}
 .judge p{margin-right:60px}
 </style>
@@ -154,15 +154,15 @@ if (localStorage.pagecount)
 </script>
 <div class="container1" id= "idContainer1" >
 <br/><br/>
-<p class="title">ÆÀÂÛÇø</p>
+<p class="title">è¯„è®ºåŒº</p>
 <div class="page" id="idpage">
-<button class="page" id="idpagefirst" onclick=loadXMLDoc(1)>Ê×Ò³</button>
+<button class="page" id="idpagefirst" onclick=loadXMLDoc(1)>é¦–é¡µ</button>
 <button class="page" id="idpage1" onclick=loadXMLDoc(1)>1</button>
 <button class="page" id="idpage2" onclick=loadXMLDoc(2)>2</button>
 <button class="page" id="idpage3" onclick=loadXMLDoc(3)>3</button>
 <button class="page" id="idpage4" onclick=loadXMLDoc(4)>4</button>
 <button class="page" id="idpage5" onclick=loadXMLDoc(5)>5</button>
-<button class="page" id="idpagelast" onclick=loadXMLDoc(5)>Î²Ò³</button>
+<button class="page" id="idpagelast" onclick=loadXMLDoc(5)>å°¾é¡µ</button>
 <br/>
 </div>
 <div class="judge" id="idjudge1" >
@@ -196,7 +196,7 @@ if (localStorage.pagecount)
 
 var nums = [], timer, n = $$("idSlider2").getElementsByTagName("li").length,
 	st = new SlideTrans("idContainer2", "idSlider2", n, {
-		onStart: function(){//ÉèÖÃ°´Å¥ÑùÊ½
+		onStart: function(){//è®¾ç½®æŒ‰é’®æ ·å¼
 			forEach(nums, function(o, i){ o.className = st.Index == i ? "on" : ""; })
 		}
 	});
@@ -215,9 +215,9 @@ st.Run();
 
 $$("idAuto").onclick = function(){
 	if(st.Auto){
-		st.Auto = false; st.Stop(); this.value = "×Ô¶¯";
+		st.Auto = false; st.Stop(); this.value = "è‡ªåŠ¨";
 	}else{
-		st.Auto = true; st.Run(); this.value = "Í£Ö¹";
+		st.Auto = true; st.Run(); this.value = "åœæ­¢";
 	}
 }
 $$("idNext").onclick = function(){ st.Next(); }
