@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>新闻轮播</title>
+<script src="SlideTrans.js"></script>
+</head>
+<body >
+<script>
+new SlideTrans("idContainer", "idSlider", 3, { Vertical: false }).Run();
+</script>
+<br />
+<style type="text/css">
+body {TEXT-ALIGN: center;background-color:#AA7700;
+background:url(http://i1.s.hjfile.cn/entry/201407/a8d93b77-9126-44e9-ac23-d4b2a3c50315.jpeg);
+background-size: cover; 
+-moz-background-size: cover;
+background-repeat:no-repeat;
+}
+.container{ margin:0 auto;border:10px solid black;}
+.container:hover{border:10px solid white;}
+.container, .container img{width:960px; height:700px;}
+.container img{border:0;vertical-align:top;}
+.container ul, .container li{list-style:none;margin:0;padding:0;}
+.num{ position:absolute; right:5px; bottom:5px; font:12px/1.5 tahoma, arial; height:18px;}
+.num li{
+	float: left;
+	color: #d94b01;
+	text-align: center;
+	line-height: 16px;
+	width: 16px;
+	height: 16px;
+	font-family: Arial;
+	font-size: 11px;
+	cursor: pointer;
+	margin-left: 3px;
+	border: 1px solid #f47500;
+	background-color: #fcf2cf;
+}
+.num li.on{
+	line-height: 18px;
+	width: 18px;
+	height: 18px;
+	font-size: 14px;
+	margin-top:-2px;
+	background-color: #ff9415;
+	font-weight: bold;
+	color:#FFF;
+}
+</style>
+<div class="container" id="idContainer2">
+	<ul id="idSlider2">
+		<li><a href=""> <img class="image" src=""  /> </a></li>
+		<li><a href=""> <img class="image" src=""  /> </a></li>
+		<li><a href=""> <img class="image" src=""  /> </a></li>
+		<li><a href=""> <img class="image" src=""  /> </a></li>
+		<li><a href=""> <img class="image" src=""  /> </a></li>
+	</ul>
+	<ul class="num" id="idNum">
+	</ul>
+</div>
+<br />
+<div>
+	<input id="idAuto" type="button" value="停止" />
+	<input id="idPre" type="button" value="&lt;&lt" />
+	<input id="idNext" type="button" value="&gt;&gt;" />
+	<select id="idTween">
+		<option value="0">默认缓动</option>
+		<option value="1">方式1</option>
+		<option value="2">方式2</option>
+	</select>
+</div>
+
+<style type=text/css>
+.container1 {width:800px; height:1600px; margin:0 auto;
+background-color:green;border:10px solid black}
+.judge {width:600px; height:200px; background-color:white;
+		margin-left:60px;margin-top:20px; border:10px solid black}
+div.page {width:800px;height:50;margin-left:60px}
+div.page button{float:left}
+.container1 p.title{font-family:华文彩云;font-size:30px;font-weight:bold}
+.judge img{float:left;margin:30px;width:100px;height:80px}
+.judge p{margin-right:60px}
+</style>
+
+<script>
+function loadXMLDoc(num)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    var x=xmlhttp.responseText;
+	eval("var a="+x);
+	document.getElementById("idcontnet1").innerHTML=a[(num-1)*5+0].judge;
+	document.getElementById("idcontnet2").innerHTML=a[(num-1)*5+1].judge;
+	document.getElementById("idcontnet3").innerHTML=a[(num-1)*5+2].judge;
+	document.getElementById("idcontnet4").innerHTML=a[(num-1)*5+3].judge;
+	document.getElementById("idcontnet5").innerHTML=a[(num-1)*5+4].judge;
+    localStorage.pagecount=num;
+
+	}
+  }
+xmlhttp.open("GET","Json.json",true);
+xmlhttp.send();
+}
+function getImg(){
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    var x=xmlhttp.responseText;
+	eval("var a="+x);
+	var y=document.getElementsByClassName("image");
+	for(var i=0; i<y.length;i++)
+	{
+		y[i].src=a[i].src;
+	}
+    }
+  }
+xmlhttp.open("GET","JsonImage.json",true);
+xmlhttp.send();
+}
+window.onload=function(){
+if (localStorage.pagecount)
+	{
+	var i = 0;
+	localStorage.pagecount=Number(localStorage.pagecount);
+	i=Number(localStorage.pagecount);
+	loadXMLDoc(i);
+	}
+	else
+	{loadXMLDoc(1);}
+	getImg();
+}
+</script>
+<div class="container1" id= "idContainer1" >
+<br/><br/>
+<p class="title">评论区</p>
+<div class="page" id="idpage">
+<button class="page" id="idpagefirst" onclick=loadXMLDoc(1)>首页</button>
+<button class="page" id="idpage1" onclick=loadXMLDoc(1)>1</button>
+<button class="page" id="idpage2" onclick=loadXMLDoc(2)>2</button>
+<button class="page" id="idpage3" onclick=loadXMLDoc(3)>3</button>
+<button class="page" id="idpage4" onclick=loadXMLDoc(4)>4</button>
+<button class="page" id="idpage5" onclick=loadXMLDoc(5)>5</button>
+<button class="page" id="idpagelast" onclick=loadXMLDoc(5)>尾页</button>
+<br/>
+</div>
+<div class="judge" id="idjudge1" >
+<img src="http://media-wallpapers.theotaku.com/1024-by-768-88546-20061208215921.jpg"/>
+<p class="content" id="idcontnet1">
+</p>
+</div>
+<div class="judge" id="idjudge2">
+<img src="http://media-wallpapers.theotaku.com/1024-by-768-88546-20061208215921.jpg"/>
+<p class="content" id="idcontnet2">
+</p>
+</div>
+<div class="judge" id="idjudge3">
+<img src="http://media-wallpapers.theotaku.com/1024-by-768-88546-20061208215921.jpg"/>
+<p class="content" id="idcontnet3">
+</p>
+</div>
+<div class="judge" id="idjudge4">
+<img src="http://media-wallpapers.theotaku.com/1024-by-768-88546-20061208215921.jpg"/>
+<p class="content" id="idcontnet4">
+</p>
+</div>
+<div class="judge" id="idjudge5">
+<img src="http://media-wallpapers.theotaku.com/1024-by-768-88546-20061208215921.jpg"/>
+<p class="content" id="idcontnet5">
+</p>
+</div>
+</div>
+
+<script>
+
+var nums = [], timer, n = $$("idSlider2").getElementsByTagName("li").length,
+	st = new SlideTrans("idContainer2", "idSlider2", n, {
+		onStart: function(){//设置按钮样式
+			forEach(nums, function(o, i){ o.className = st.Index == i ? "on" : ""; })
+		}
+	});
+for(var i = 1; i <= n; AddNum(i++)){};
+function AddNum(i){
+	var num = $$("idNum").appendChild(document.createElement("li"));
+	num.innerHTML = i--;
+	num.onmouseover = function(){
+		timer = setTimeout(function(){ num.className = "on"; st.Auto = false; st.Run(i); }, 200);
+	}
+	num.onmouseout = function(){ clearTimeout(timer); num.className = ""; st.Auto = true; st.Run(); }
+	nums[i] = num;
+}
+st.Run();
+
+
+$$("idAuto").onclick = function(){
+	if(st.Auto){
+		st.Auto = false; st.Stop(); this.value = "自动";
+	}else{
+		st.Auto = true; st.Run(); this.value = "停止";
+	}
+}
+$$("idNext").onclick = function(){ st.Next(); }
+$$("idPre").onclick = function(){ st.Previous(); }
+$$("idTween").onchange = function(){
+	switch (parseInt(this.value)){
+		case 2 :
+			st.Tween = Tween.Bounce.easeOut; break;
+		case 1 :
+			st.Tween = Tween.Back.easeOut; break;
+		default :
+			st.Tween = Tween.Quart.easeOut;
+	}
+}
+
+</script>
+
+<br />
+
+
+</body>
+</html>
